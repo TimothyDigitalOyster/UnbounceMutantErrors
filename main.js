@@ -44,3 +44,6 @@ observer.observe(list, {
   	childList: true,
   	characterData: true
 });
+
+
+$('head').append( $('<link rel="stylesheet" type="text/css" />').attr('href', 'https://timothydigitaloyster.github.io/UnbounceMutantErrors/main.css') );
