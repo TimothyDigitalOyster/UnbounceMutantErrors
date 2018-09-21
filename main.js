@@ -1,4 +1,3 @@
-<script>
 var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
 var list = document.querySelector('.content ul');
 var standardise = function(id) {
@@ -45,4 +44,3 @@ observer.observe(list, {
   	childList: true,
   	characterData: true
 });
-</script>
