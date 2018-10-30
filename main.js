@@ -7,14 +7,14 @@ var standardise = function(id) {
 }
 var observer = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
-    	
+
     	if (mutation.type === 'childList' ) {
-        	var list_values = [].slice.call(list.children).map( function(node) { return node.innerHTML; });  
-      	} 
+        	var list_values = [].slice.call(list.children).map( function(node) { return node.innerHTML; });
+      	}
       	if (typeof list_values != 'undefined') {
       		list_values.forEach(function(value) {
         		var forFind = /for=\"(.*?)\"/g.exec(value);
-        		$("#container_"+forFind[1]+" label.error").remove();            
+        		$("#container_"+forFind[1]+" label.error").remove();
 				$('#'+forFind[1]).after(value);
   				standardise(forFind[1]);
                 console.log("mUpdates:"+forFind[1]);
@@ -27,18 +27,19 @@ var observer = new MutationObserver(function(mutations) {
         }
     });
 });
-  
+
 var updates = new MutationObserver(function(mutations) {
   mutations.forEach(function(mutation) {
+    console.log(mutation);
     var error_id = mutation.target.control.id;
-  	console.log("mChange:"+error_id);
+  	//console.log("mChange:"+error_id);
     var error_html = mutation.target.outerHTML;
     $("#container_"+error_id+" label.error").remove();
     $('#'+error_id).after(error_html);
   	standardise(error_id);
   });
 });
-	
+
 observer.observe(list, {
   	attributes: true,
   	childList: true,
